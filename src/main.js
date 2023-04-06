@@ -3,9 +3,9 @@ import { createPinia, PiniaVuePlugin } from 'pinia';
 
 import vuetify from '@/plugins/vuetify';
 
-import App from './App.vue';
+import App from '@/App.vue';
 
-import './assets/main.css';
+import '@/assets/main.css';
 
 Vue.use(PiniaVuePlugin); 
 

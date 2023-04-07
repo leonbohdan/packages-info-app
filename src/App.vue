@@ -1,4 +1,5 @@
 <script setup>
+import PackagesList from '@/components/PackagesList.vue';
 </script>
 
 <template>
@@ -11,13 +12,13 @@
 
     <v-main>
       <v-container>
-        App
+        <PackagesList />
       </v-container>
     </v-main>
 
     <v-footer app>
       <v-container>
-        footer
+        <BaseFooter />
       </v-container>
     </v-footer>
   </v-app>

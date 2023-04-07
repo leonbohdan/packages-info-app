@@ -1,14 +1,10 @@
 import { defineConfig, splitVendorChunkPlugin } from 'vite';
-import * as path from 'path';
+import path from 'node:path';
 import legacy from '@vitejs/plugin-legacy';
 import vue2 from '@vitejs/plugin-vue2';
 import eslint from 'vite-plugin-eslint';
 import Components from 'unplugin-vue-components/vite';
 import { VuetifyResolver } from 'unplugin-vue-components/resolvers';
-
-function resolve(dir) {
-  return path.resolve(__dirname, dir);
-}
 
 export default defineConfig({
   plugins: [
@@ -36,7 +32,12 @@ export default defineConfig({
     preprocessorOptions: {
       sass: {
         additionalData: [
-          // '@import "~vuetify/src/styles/styles.sass"',
+          '@import "~/vuetify/src/styles/styles.sass"',
+          '',
+        ].join('\n'),
+      },
+      css: {
+        additionalData: [
           '@import "@/assets/main.css"',
           '',
         ].join('\n'),
@@ -45,25 +46,9 @@ export default defineConfig({
   },
 
   resolve: {
-    alias: [
-      {
-        find: '@',
-        replacement: resolve('./src'),
-      },
-      {
-        find: '~',
-        replacement: resolve('./node_modules'),
-      },
-      {
-        find: '@/',
-        replacement: `${path.resolve(__dirname, './src')}/`,
-      },
-      {
-        find: 'src/',
-        replacement: `${path.resolve(__dirname, './src')}/`,
-      },
-    ],
-
-    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+      '~': path.resolve(__dirname, './node_modules'),
+    },
   },
 });

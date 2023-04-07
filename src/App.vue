@@ -4,7 +4,7 @@ import PackagesList from '@/components/PackagesList.vue';
 
 <template>
   <v-app>
-    <v-app-bar app>
+    <v-app-bar app elevation="1">
       <v-container>
         <v-toolbar-title>Packages info bar</v-toolbar-title>
       </v-container>

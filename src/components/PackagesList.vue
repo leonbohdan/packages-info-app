@@ -79,6 +79,7 @@ const updateTableOptions = () => {
           :items-per-page="packagesStore.params.size"
           :headers="headers"
           :items="packagesStore.packages"
+          :server-items-length="packagesStore.totalPackages"
           item-value="package.name"
           single-select
           :show-select="false"

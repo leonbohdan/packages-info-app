@@ -1,4 +1,6 @@
 <script setup>
+import { vAutofocus } from '@/directives/vAutofocus';
+
 const props = defineProps({
   value: {
     type: String,
@@ -12,6 +14,7 @@ const emits = defineEmits(['input']);
 <template>
   <v-text-field
     :value="props.value"
+    autofocus
     placeholder="Search"
     hide-details
     outlined

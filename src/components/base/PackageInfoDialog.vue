@@ -14,7 +14,7 @@ const props = defineProps({
 const emits = defineEmits(['input']);
 
 const typeIcon = (type) => {
-  return type === 'npm' ? 'mdi-npm' : 'mdi-github-circle';
+  return type === 'npm' ? 'mdi-npm' : 'mdi-github';
 };
 
 const formattedTags = computed(() => {

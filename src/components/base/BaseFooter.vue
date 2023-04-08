@@ -19,7 +19,7 @@ const openLink = () => {
         </v-icon>
       </v-btn>
 
-      <v-btn icon href="https://t.me/lbwkm">
+      <v-btn icon href="https://t.me/lbwkm" style="opacity: 0.5">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           xml:space="preserve"

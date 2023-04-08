@@ -1,6 +1,7 @@
 <script setup>
 import { ref, watch } from 'vue';
 import { usePackagesStore } from '@/stores/packagesStore.js';
+import { format } from 'date-fns';
 
 const packagesStore = usePackagesStore();
 
@@ -64,6 +65,10 @@ const updateTableOptions = ({ page, itemsPerPage } = {}) => {
   packagesStore.setSearchParam('size', itemsPerPage);
   packagesStore.setSearchParam('from', fromItem);
 };
+
+const dateFormatter = (date) => {
+  return date ? format(new Date(date), 'dd-MM-yyyy') : '-';
+};
 </script>
 
 <template>
@@ -97,7 +102,33 @@ const updateTableOptions = ({ page, itemsPerPage } = {}) => {
           @click:row="handleRowClick"
           @update:options="updateTableOptions"
         >
-          d
+          <template #item.package.name="{ item }">
+            <span class="text-no-wrap">
+              {{ item.package.name }}
+            </span>
+          </template>
+
+          <template #item.package.version="{ item }">
+            <span class="text-no-wrap">
+              {{ item.package.version }}
+            </span>
+          </template>
+
+          <template #item.package.description="{ item }">
+            {{ item.package?.description || '-' }}
+          </template>
+
+          <template #item.package.author.name="{ item }">
+            <span class="text-no-wrap">
+              {{ item.package.author?.name || '-' }}
+            </span>
+          </template>
+
+          <template #item.package.date="{ item }">
+            <span class="text-no-wrap">
+              {{ dateFormatter(item.package.date) }}
+            </span>
+          </template>
         </v-data-table>
       </v-sheet>
     </v-container>

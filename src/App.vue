@@ -16,7 +16,7 @@ import PackagesList from '@/components/PackagesList.vue';
       </v-container>
     </v-main>
 
-    <v-footer app>
+    <v-footer app absolute>
       <v-container>
         <BaseFooter />
       </v-container>

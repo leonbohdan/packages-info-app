@@ -55,8 +55,14 @@ const footerProps = {
   'show-current-page': true,
 };
 
-const handleRowClick = () => {
-  console.log('handleRowClick');
+const handleChosenRow = (item, row) => {
+  console.log('handleChosenRow', item);
+
+  packagesStore.getPackageInfo(item.package.name);
+
+  const selectState = !row.isSelected;
+
+  row.select(selectState);
 };
 
 const updateTableOptions = ({ page, itemsPerPage } = {}) => {
@@ -99,7 +105,7 @@ const dateFormatter = (date) => {
           :show-select="false"
           item-key="package.name"
           selectable-key="package.name"
-          @click:row="handleRowClick"
+          @click:row="handleChosenRow"
           @update:options="updateTableOptions"
         >
           <template #item.package.name="{ item }">

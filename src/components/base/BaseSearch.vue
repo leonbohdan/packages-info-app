@@ -1,6 +1,4 @@
 <script setup>
-import { vAutofocus } from '@/directives/vAutofocus';
-
 const props = defineProps({
   value: {
     type: String,

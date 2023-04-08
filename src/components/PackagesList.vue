@@ -2,12 +2,14 @@
 import { ref, watch } from 'vue';
 import { usePackagesStore } from '@/stores/packagesStore.js';
 import { format } from 'date-fns';
+import PackageInfoDialog from '@/components/base/PackageInfoDialog.vue';
 
 const packagesStore = usePackagesStore();
 
 packagesStore.getSearchPackages();
 
 const search = ref('');
+const showPackageInfoDialog = ref(false);
 
 watch(
   search,
@@ -56,13 +58,13 @@ const footerProps = {
 };
 
 const handleChosenRow = (item, row) => {
-  console.log('handleChosenRow', item);
-
   packagesStore.getPackageInfo(item.package.name);
 
   const selectState = !row.isSelected;
 
   row.select(selectState);
+
+  showPackageInfoDialog.value = true;
 };
 
 const updateTableOptions = ({ page, itemsPerPage } = {}) => {
@@ -138,5 +140,9 @@ const dateFormatter = (date) => {
         </v-data-table>
       </v-sheet>
     </v-container>
+
+    <PackageInfoDialog
+      v-model="showPackageInfoDialog"
+    />
   </v-card>
 </template>

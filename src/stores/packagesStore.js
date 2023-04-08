@@ -13,7 +13,7 @@ export const usePackagesStore = defineStore('packagesStore', {
 
     package: {
       stats: null,
-      badge: null,
+      badges: null,
       metadata: null,
     },
     packageLoading: false,
@@ -24,9 +24,14 @@ export const usePackagesStore = defineStore('packagesStore', {
       from: 0,
     },
 
-    packageParams: {
-      type: 'hits', // badge
-      period: 'week', // badge, stats
+    packageTypesParams: {
+      hits: 'hits',
+      rank: 'rank',
+      'type-rank': 'type-rank',
+    },
+
+    packagePeriodParams: {
+      period: 'month',
     },
   }),
 
@@ -55,12 +60,20 @@ export const usePackagesStore = defineStore('packagesStore', {
       this.packageLoading = true;
 
       try {
-        const stats = await getPackageStats(packageName, this.packageParams);
-        const badge = await getPackageBadge(packageName, this.packageParams);
+        const stats = await getPackageStats(packageName, this.packagePeriodParams);
+
         const metadata = await getPackageMetadata(packageName);
 
+        const badgeHits = await getPackageBadge(packageName, { type: this.packageTypesParams['hits'] });
+        const badgeRank = await getPackageBadge(packageName, { type: this.packageTypesParams['rank'] });
+        const badgeTypeRank = await getPackageBadge(packageName, { type: this.packageTypesParams['type-rank'] });
+
         this.package.stats = stats.data;
-        this.package.badge = badge.data;
+        this.package.badges = {
+          hits: badgeHits.data,
+          rank: badgeRank.data,
+          typeRank: badgeTypeRank.data,
+        };
         this.package.metadata = metadata.data;
       } finally {
         this.packageLoading = false;

@@ -38,8 +38,8 @@ export const usePackagesStore = defineStore('packagesStore', {
       }
     }, DEBOUNCE_DELAY),
 
-    setSearchParam(text) {
-      this.params.text = text;
+    setSearchParam(param, value) {
+      this.params[param] = value;
     },
   },
 });

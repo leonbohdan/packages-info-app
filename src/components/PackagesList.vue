@@ -10,7 +10,7 @@ const search = ref('');
 
 watch(
   search,
-  (value) => packagesStore.setSearchParam(value),
+  (value) => packagesStore.setSearchParam('text', value),
   { deep: true },
 );
 
@@ -49,12 +49,20 @@ const headers = ref([
   },
 ]);
 
+const footerProps = {
+  'items-per-page-options': [5, 10, 15, 20],
+  'show-current-page': true,
+};
+
 const handleRowClick = () => {
   console.log('handleRowClick');
 };
 
-const updateTableOptions = () => {
-  console.log('updateTableOptions');
+const updateTableOptions = ({ page, itemsPerPage } = {}) => {
+  const fromItem = (page - 1) * itemsPerPage;
+
+  packagesStore.setSearchParam('size', itemsPerPage);
+  packagesStore.setSearchParam('from', fromItem);
 };
 </script>
 
@@ -80,6 +88,7 @@ const updateTableOptions = () => {
           :headers="headers"
           :items="packagesStore.packages"
           :server-items-length="packagesStore.totalPackages"
+          :footer-props="footerProps"
           item-value="package.name"
           single-select
           :show-select="false"

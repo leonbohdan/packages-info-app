@@ -2,7 +2,7 @@
 import { ref, watch } from 'vue';
 import { usePackagesStore } from '@/stores/packagesStore.js';
 import { format } from 'date-fns';
-import PackageInfoDialog from '@/components/base/PackageInfoDialog.vue';
+import PackageInfoDialog from '@/components/PackageInfoDialog.vue';
 
 const packagesStore = usePackagesStore();
 

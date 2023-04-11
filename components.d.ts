@@ -10,7 +10,7 @@ declare module 'vue' {
     BaseDialog: typeof import('./src/components/base/BaseDialog.vue')['default']
     BaseFooter: typeof import('./src/components/base/BaseFooter.vue')['default']
     BaseSearch: typeof import('./src/components/base/BaseSearch.vue')['default']
-    PackageInfoDialog: typeof import('./src/components/base/PackageInfoDialog.vue')['default']
+    PackageInfoDialog: typeof import('./src/components/PackageInfoDialog.vue')['default']
     PackagesList: typeof import('./src/components/PackagesList.vue')['default']
     VApp: typeof import('vuetify/lib')['VApp']
     VAppBar: typeof import('vuetify/lib')['VAppBar']

@@ -1,6 +1,5 @@
 import { defineStore, acceptHMRUpdate } from 'pinia';
-import { getSearchPackages } from '@/api/searchApi.js';
-import { getPackageMetadata, getPackageStats, getPackageBadge } from '@/api/packagesApi.js';
+import { getPackageMetadata, getPackageStats, getPackageBadge, getSearchPackages } from '@/api/config.js';
 import { debounce } from 'lodash-es';
 
 const DEBOUNCE_DELAY = 400;

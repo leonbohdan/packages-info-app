@@ -6,7 +6,7 @@ const props = defineProps({
   },
 });
 
-const emits = defineEmits(['input']);
+const emit = defineEmits(['input']);
 </script>
 
 <template>
@@ -20,6 +20,6 @@ const emits = defineEmits(['input']);
     dense
     prepend-inner-icon="mdi-magnify"
     single-line
-    @input="val => emits('input', val)"
+    @input="val => emit('input', val)"
   />
 </template>

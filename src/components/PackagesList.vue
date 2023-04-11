@@ -10,10 +10,14 @@ packagesStore.getSearchPackages();
 
 const search = ref('');
 const showPackageInfoDialog = ref(false);
+const currentPage = ref(1);
 
 watch(
   search,
-  (value) => packagesStore.setSearchParam('text', value),
+  (value) => {
+    packagesStore.setSearchParam('text', value);
+    currentPage.value = 1;
+  },
   { deep: true },
 );
 
@@ -68,6 +72,8 @@ const handleChosenRow = (item, row) => {
 };
 
 const updateTableOptions = ({ page, itemsPerPage } = {}) => {
+  currentPage.value = page;
+
   const fromItem = (page - 1) * itemsPerPage;
 
   packagesStore.setSearchParam('size', itemsPerPage);
@@ -101,6 +107,7 @@ const dateFormatter = (date) => {
           :headers="headers"
           :items="packagesStore.packages"
           :server-items-length="packagesStore.totalPackages"
+          :page="currentPage"
           :footer-props="footerProps"
           item-value="package.name"
           single-select

@@ -11,7 +11,7 @@ const props = defineProps({
   },
 });
 
-const emits = defineEmits(['input']);
+const emit = defineEmits(['input']);
 
 const typeIcon = (type) => {
   return type === 'npm' ? 'mdi-npm' : 'mdi-github';
@@ -28,7 +28,7 @@ const formattedTags = computed(() => {
     title="Package info"
     :loading="packagesStore.packageLoading"
     :width="'600px'"
-    @input="(val) => emits('input', val)"
+    @input="(val) => emit('input', val)"
   >
     <template v-if="!packagesStore.packageLoading">
       <div class="overline pt-2 d-flex align-center">

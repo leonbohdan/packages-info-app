@@ -1,20 +1,9 @@
 import axios from 'axios';
 
-export const apiClient = (baseURL) => axios.create({
-  baseURL,
-});
+const api = axios.create({ baseURL: 'https://data.jsdelivr.com/v1' });
+const searchApi = axios.create({ baseURL: 'https://registry.npmjs.org/-/v1' });
 
-const baseApiUrl = 'https://data.jsdelivr.com/v1';
-const baseSearchApiUrl = 'https://registry.npmjs.org/-/v1';
-
-export const getPackageStats = (packageName, params) => apiClient(baseApiUrl)
-  .get(`stats/packages/npm/${packageName}`, { params });
-
-export const getPackageBadge = (packageName, params) => apiClient(baseApiUrl)
-  .get(`stats/packages/npm/${packageName}/badge`, { params });
-
-export const getPackageMetadata = (packageName) => apiClient(baseApiUrl)
-  .get(`packages/npm/${packageName}`);
-
-export const getSearchPackages = (params) => apiClient(baseSearchApiUrl)
-  .get('/search', { params });
+export const getPackageStats = (packageName, params) => api.get(`/stats/packages/npm/${packageName}`, { params });
+export const getPackageBadge = (packageName, params) => api.get(`/stats/packages/npm/${packageName}/badge`, { params });
+export const getPackageMetadata = (packageName) => api.get(`/packages/npm/${packageName}`);
+export const getSearchPackages = (params) => searchApi.get('/search', { params });
